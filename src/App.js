@@ -1,56 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, {useEffect} from 'react';
+// import {useSelector} from "react-redux"
 import './App.css';
+import axios from 'axios';
 
 function App() {
+
+  useEffect(() => {
+   axios.get(`https://public-api.solscan.io/token/list?sortBy=volume&direction=desc&limit=10&offset=0`).then(res=> {
+     console.log("Get list of tokens. MaxLimit 50 records per request");
+     console.log(res);
+   })
+   axios.get(`https://public-api.solscan.io/token/meta?tokenAddress=A9AF5BGdCTANdKS7ywBEKYqjP8S9xkhs29KhZbrjwMWy`).then(res=> {
+     console.log("Get Meta Data");
+     console.log(res);
+   })
+   axios.get(`https://public-api.solscan.io/account/tokens?account=9K8aN7YxWu9gDVQC5StXpRqAcxq2MD5Tff2yCTv9zSve`).then(res=> {
+     console.log("Get Meta Data");
+     console.log(res);
+   })
+  }, [])
+
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+     
     </div>
   );
 }
